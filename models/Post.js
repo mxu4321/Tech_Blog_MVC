@@ -21,6 +21,7 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    // foreignKey: "user_id"
     user_id: {
       type: DataTypes.INTEGER,
       references: {

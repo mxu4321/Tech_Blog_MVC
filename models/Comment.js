@@ -16,6 +16,7 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // foreignKey: "user_id", "post_id"
     user_id: {
       type: DataTypes.INTEGER,
       references: {
