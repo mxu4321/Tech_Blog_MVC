@@ -4,7 +4,7 @@ const routes = require("./controllers");
 const sequelize = require("./config/connection");
 const exphbs = require("express-handlebars");
 const hbs = exphbs.create({
-    // helpers
+  // helpers
 });
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -18,7 +18,7 @@ const sess = {
   // when user idle for a while will be prompted to log in again
   cookie: {
     // milliseconds⤵️
-    maxAge: 60000
+    maxAge: 60000,
   },
   resave: false,
   saveUninitialized: true,

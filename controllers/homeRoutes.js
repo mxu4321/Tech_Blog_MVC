@@ -1,8 +1,12 @@
-// const router = require("express").Router();
+const router = require("express").Router();
+const { Post, User, Comment } = require("../models");
+const withAuth = require("../utils/auth");
 
-// router.get("/test", (req,res) => {
-//     res.render("homepage")
-// })
+router.get("/", (req, res) => {
+  res.render("homepage", {
+    logged_in: req.session.logged_in,
+  });
+});
 
 // router.get("/testing", (req,res) => {
 //     const obj = [
@@ -21,4 +25,4 @@
 //     })
 // })
 
-// module.exports = router
+module.exports = router;
