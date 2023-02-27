@@ -1,7 +1,7 @@
 [
-    {
-    "username": "test",
-    "email": "test@email.com",
-    "password": "1234"
-}
-]
+  {
+    username: "test",
+    email: "test@email.com",
+    password: "1234",
+  },
+];
