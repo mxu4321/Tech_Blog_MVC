@@ -15,7 +15,11 @@ const PORT = process.env.PORT || 3001;
 
 const sess = {
   secret: "Super secret secret",
-  cookie: {},
+  // when user idle for a while will be prompted to log in again
+  cookie: {
+    // milliseconds⤵️
+    maxAge: 60000
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
