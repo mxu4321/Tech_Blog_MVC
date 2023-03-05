@@ -1,4 +1,4 @@
-const router = express.Router();
+const router = require("express").Router();
 const { Post, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
+      // ---> ❓ need to add anything for including comment model?
       include: [{ model: Comment }],
     });
     const post = postData.get({ plain: true });
@@ -37,6 +38,7 @@ router.get("/user/:id", withAuth, async (req, res) => {
       where: {
         user_id: req.params.id,
       },
+      // ---> ❓ need to add anything for including comment model?
       include: [{ model: Comment }],
     });
     const posts = postData.map((post) => post.get({ plain: true }));
@@ -60,6 +62,7 @@ router.get("/create", withAuth, (req, res) => {
 router.get("/update/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
+      // ---> ❓ need to add anything for including comment model?
       include: [{ model: Comment }],
     });
     const post = postData.get({ plain: true });

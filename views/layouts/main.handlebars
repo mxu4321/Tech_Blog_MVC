@@ -20,8 +20,8 @@
       {{!-- nav bar --}}
       <nav>
         <!-- Conditionally render login or logout links -->
+        <a href="/dashboard">dashboard</a>
         {{#if logged_in}}
-        <a href="#">dashboard</a>
         <a href="#">new post</a>
         <button class="no-button" id="logout">logout</button>
         {{else}}

@@ -17,8 +17,8 @@ const sess = {
   secret: "Super secret secret",
   // when user idle for a while will be prompted to log in again
   cookie: {
-    // milliseconds⤵️
-    maxAge: 60000,
+    // milliseconds⤵️10mintues
+    maxAge: 600000,
   },
   resave: false,
   saveUninitialized: true,

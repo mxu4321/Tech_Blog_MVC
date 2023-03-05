@@ -7,6 +7,18 @@ router.get("/", (req, res) => {
     logged_in: req.session.logged_in,
   });
 });
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+
+router.get("/dashboard", withAuth, async (req, res) => {
+  console.log(req.session.user_id);
+  const userInfo =  await User.findByPk(req.session.user_id)
+  const parsedInfo = userInfo.get({plain: true})
+  res.render("dashboard", {
+    username: parsedInfo.username
+  })
+})
 
 // router.get("/testing", (req,res) => {
 //     const obj = [
