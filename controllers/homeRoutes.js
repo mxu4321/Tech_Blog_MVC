@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
     logged_in: req.session.logged_in,
   });
 });
+// withAuth will check if the user is logged in before rendering the page
 router.get("/login", (req, res) => {
   res.render("login");
 });
@@ -20,21 +21,13 @@ router.get("/dashboard", withAuth, async (req, res) => {
   })
 })
 
-// router.get("/testing", (req,res) => {
-//     const obj = [
-//         {
-//             title: "post - 1",
-//             contents: "content - 1",
-//         },
-//         {
-//             title: "post - 2",
-//             contents: "content - 2",
-//         },
-//     ]
-//     res.render("profile", {
-//         posts: obj,
-//         logged_in: req.session.logged_in
-//     })
-// })
+// sign up routes
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  res.render('signup');
+});
 
 module.exports = router;

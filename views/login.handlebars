@@ -1,10 +1,27 @@
-<h2>Login stuff</h2>
+{{!-- login page --}}
+<div class="login-card">
+    <h2 class="page-title">Login</h2>
+    <form class="form" id="login-form">
+        <div class="form-group">
+            <label for="email-login">Email:</label>
+            <input type="text" placeholder="email" id="email-field">
+        </div>
+        <div class="form-group">
+            <label for="password-login">Password:</label>
+            <input type="password" placeholder="password" id="password-field">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
+    <div>
+        <p>No account yet?
+            <a href="/signup"><button type="button" class="btn btn-secondary">Signup</button></a>
+            instead
+        </p>
+    </div>
+</div>
 
-<form id="login-form">
-    <input type="text" placeholder="email" id="email-field">
-    <input type="password" placeholder="password" id="password-field">
 
-    <button type="submit">send</button>
-</form>
 
 <script src="/js/login.js"></script>
