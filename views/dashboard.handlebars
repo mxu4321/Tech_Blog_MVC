@@ -1,5 +1,7 @@
 <h3>PROFILE PAGE MAYBE {{username}}</h3>
 
-{{#each posts}}
-    {{> post-card}}
-{{/each}}
+<div>
+    {{#each posts as |post|}}
+    {{> post-card}}  
+    {{/each}}
+</div>

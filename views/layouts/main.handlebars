@@ -12,9 +12,9 @@
 </head>
 
 {{!-- includes existing blog posts; navigation links for the homepage and the dashboard; and the option to log in --}}
-
 <body>
   <div class="flex-column justify-space-around">
+    {{!-- header --}}
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
         The Tech Blog
@@ -39,28 +39,12 @@
         </li>
         {{/if}}
       </ul>
-
-      {{!-- <nav>
-        <!-- Conditionally render login or logout links -->
-        <a href="/dashboard">dashboard</a>
-        {{#if logged_in}}
-        <a href="#">new post</a>
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        <a href="/">homepage</a>
-        {{/if}}
-      </nav> --}}
-
-      {{!-- header --}}
     </header>
+
+    {{!-- main --}}
     <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
       {{{ body }}}
     </main>
-    <footer>
-
-    </footer>
   </div>
 
   <!-- Render script for logged in users only -->

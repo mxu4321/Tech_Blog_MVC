@@ -3,7 +3,7 @@
 </h2>
 
 <div>
-    {{#each posts}}
-    {{> post-card}}
+    {{#each posts as |post|}}
+    {{> post-card}}  
     {{/each}}
 </div>

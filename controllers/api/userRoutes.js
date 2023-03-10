@@ -56,4 +56,19 @@ router.post("/logout", (req, res) => {
   }
 });
 
+//-----insomnia test routes-----
+// get all user info (localhost:3001/api/user/)
+router.get("/", async (req, res) => {
+  try {
+    const userData = await User.findAll({
+      include: [{ model: Post }, { model: Comment }],
+    });
+    const users = userData.map((user) => user.get({ plain: true }));
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 module.exports = router;

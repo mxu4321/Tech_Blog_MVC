@@ -1,11 +1,19 @@
-<div>
-    <h4>
-        {{title}}
-    </h4>
+<div class="post-card card">
 
-    <p>
-        {{contents}}
-    </p>
+    <div class="card-header">
+        <h4>{{title}}</h4>
+    </div>
 
-    {{!--  --}}
+    <div class="card-body">
+        <p>
+            {{contents}}
+        </p>
+    </div>
+
+    <div class="card-footer text-muted">
+        Posted on
+        {{!-- ⏰ insert post date & time --}}
+        {{format_date}}
+    </div>
+
 </div>
