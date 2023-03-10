@@ -8,6 +8,16 @@
         <p>
             {{contents}}
         </p>
+
+        <div>
+            {{!-- ⏰ if comments exist --}}
+            {{#if comments}}
+            {{each comments as |comment|}}
+            {{> comment-card}}
+            {{/each}}
+            {{/if}}
+        </div>
+
     </div>
 
     <div class="card-footer text-muted">
