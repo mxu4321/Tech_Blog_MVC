@@ -7,21 +7,26 @@ router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
     if (!userData) {
-      res.status(404).json({ message: "No user found with this email address" });
+      res
+        .status(404)
+        .json({ message: "No user found with this email address" });
       return;
     }
     const validPassword = userData.checkPassword(req.body.password);
     if (!validPassword) {
-      res.status(404).json({message: "Password is incorrect"});
+      res.status(404).json({ message: "Password is incorrect" });
       return;
     }
     // save session data and redirect to dashboard page
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      // res.json({ user: userData, message: "You are now logged in!" });
-      // res.redirect("/dashboard");
-      res.status(200).json(userData);
+      // res.status(200).json({ // 🧪 insomnia test
+      // message: `${userData.username} is logged in; id: ${userData.id}; email: ${userData.email}`
+      // });
+      res.render("dashboard", {
+        // username: userData.username,
+      });
     });
   } catch (err) {
     res.status(500).json(err);
@@ -44,7 +49,6 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-
 //logout route (localhost:3001/api/user/logout)
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
@@ -56,7 +60,7 @@ router.post("/logout", (req, res) => {
   }
 });
 
-//-----insomnia test routes-----
+//----- 🧪 insomnia test routes-----
 // get all user info (localhost:3001/api/user/)
 router.get("/", async (req, res) => {
   try {
@@ -69,6 +73,5 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;

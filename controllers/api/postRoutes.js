@@ -9,50 +9,30 @@ router.get("/", async (req, res) => {
       // include: [{ model: Comment }], // --> ❓needed for homepage?
     });
     const posts = postData.map((post) => post.get({ plain: true }));
+
     // ---- ❓render homepage or post page?
-    res.render("homepage", { posts, logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// get a single post by id (localhost:3001/api/post/:id)
-router.get("/:id", withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      // ---> ❓ need to add anything for including comment model?
-      include: [{ model: Comment }],
-    });
-    const post = postData.get({ plain: true });
-    // ---> ⏰ change the handlebars name as needed
-    res.render("single-post", { post, logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// get all posts by user id (localhost:3001/api/post/user/:id)
-router.get("/user/:id", withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findAll({
-      where: {
-        user_id: req.params.id,
-      },
-      // ---> ❓ need to add anything for including comment model?
-      include: [{ model: Comment }],
-    });
-    const posts = postData.map((post) => post.get({ plain: true }));
-    // ---> ⏰ change the handlebars name as needed
-    res.render("user-post", { posts, logged_in: req.session.logged_in });
+    res.status(200).json(posts);
+    // res.render("homepage", { posts, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // create a new post (localhost:3001/api/post/create)
-router.get("/create", withAuth, (req, res) => {
+// router.get("/create", withAuth, (req, res) => {
+  router.post("/create", async (req, res) => { // --> 🧪 removed withAuth for testing
   try {
-    res.render("new-post", { logged_in: req.session.logged_in });
+    const postData = await Post.create({
+      title: req.body.title,
+      contents: req.body.contents,
+    });
+    res.status(200).json({
+      message: `post created: ${postData.title}; ${postData.contents}`,
+    });
+
+    // res.render("new-post", 
+    // // { logged_in: req.session.logged_in }
+    // );
   } catch (err) {
     res.status(500).json(err);
   }
@@ -84,5 +64,39 @@ router.get("/delete/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// get all posts by user id & display on dashboard (localhost:3001/api/post/user/:id)
+router.get("/user/:id", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      where: {
+        user_id: req.params.id,
+      },
+      // ---> ❓ need to add anything for including comment model?
+      include: [{ model: Comment }],
+    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+    // ---> ⏰ change the handlebars name as needed
+    // res.render("user-post", { posts, logged_in: req.session.logged_in });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// get a single post by id (localhost:3001/api/post/:id)
+// router.get("/:id", withAuth, async (req, res) => {
+//   try {
+//     const postData = await Post.findByPk(req.params.id, {
+//       // ---> ❓ need to add anything for including comment model?
+//       include: [{ model: Comment }],
+//     });
+//     const post = postData.get({ plain: true });
+//     // ---> ⏰ change the handlebars name as needed
+//     res.render("single-post", { post, logged_in: req.session.logged_in });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 
 module.exports = router;

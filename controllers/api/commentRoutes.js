@@ -6,17 +6,18 @@ router.post("/create", async (req, res) => {
   try {
     const commentData = await Comment.create({
       comment_text: req.body.comment_text,
-      user_id: req.session.user_id,
-      post_id: req.body.post_id,
+      // user_id: req.session.user_id,
+      // post_id: req.body.post_id,
     });
     // ---> ⏰ change to render the create a comment page
-    res.status(200).json(commentData);
+    res.status(200).json({
+      message: `comment created: ${commentData.comment_text}`,
+    });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
-// --> 🧪 for insomnia testing 
 // get all comments by post id (localhost:3000/api/comment/post/:id)
 router.get("/post/:id", async (req, res) => {
   try {
@@ -33,7 +34,7 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
-// --> 🧪 for insomnia testing 
+// --> 🧪 for insomnia testing
 // get all comments by user id (localhost:3000/api/comment/user/:id)
 router.get("/user/:id", async (req, res) => {
   try {
