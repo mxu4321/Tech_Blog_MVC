@@ -1,7 +1,17 @@
+{{!-- ⏰ TODO: styling; options for user to manage posts & comments --}}
+
 <h3>PROFILE PAGE MAYBE {{username}}</h3>
 
 <div>
     {{#each posts as |post|}}
     {{> post-card}}  
     {{/each}}
+</div>
+
+<div>
+    <a href="#">
+        <button>
+            Create a New Post
+        </button>
+    </a>
 </div>

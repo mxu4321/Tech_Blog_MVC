@@ -10,7 +10,7 @@ router.post("/login", async (req, res) => {
       res.status(404).json({ message: "No user found with this email address" });
       return;
     }
-    const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = userData.checkPassword(req.body.password);
     if (!validPassword) {
       res.status(404).json({message: "Password is incorrect"});
       return;
@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       // res.json({ user: userData, message: "You are now logged in!" });
-      res.redirect("/dashboard");
+      // res.redirect("/dashboard");
       res.status(200).json(userData);
     });
   } catch (err) {
