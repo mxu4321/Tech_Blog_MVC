@@ -27,17 +27,17 @@
         </li>
           {{#if logged_in}}
         <li class="nav-item">
-          <a class="nav-link" href="#">New Post</a>
-          <button class="no-button" id="logout">logout</button>
+          <a class="nav-link" href="/api/post/create">New Post</a>
+          <button class="no-button" id="logout">Logout</button>
         </li>
           {{else}}
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
         </li>
+        {{/if}}
         <li class="nav-item">
          <a class="nav-link" href="/">HomePage</a>
         </li>
-        {{/if}}
       </ul>
     </header>
 

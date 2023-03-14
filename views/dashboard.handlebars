@@ -1,15 +1,21 @@
 
 
-<h3>PROFILE PAGE MAYBE {{username}}</h3>
+<h3>PROFILE PAGE {{username}}</h3>
 
 <div>
 {{!-- ⏰ TODO: display user's posts and the option to add a new blog post --}}
+    {{#each posts as |post|}}
+        {{> post-card post}}
+    {{/each}}
 </div>
 
 <div>
-    <a href="/api/post/create">
-        <button>
+    
+<a href="new-post.handlebars">
+
+        <button type="button" class="btn btn-primary">
             Create a New Post
         </button>
-    </a>
+</a>
+    
 </div>

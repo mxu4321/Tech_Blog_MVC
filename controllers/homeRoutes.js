@@ -10,8 +10,8 @@ router.get("/", async (req, res) => {
     });
     const posts = postData.map((post) => post.get({ plain: true }));
     res.render("homepage", {
-      // posts,
-      // logged_in: req.session.logged_in,
+      posts,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -25,16 +25,22 @@ router.get("/login", (req, res) => {
 
 router.get("/dashboard", withAuth, async (req, res) => {
   console.log(req.session.user_id);
-  const userInfo =  await User.findByPk(req.session.user_id)
+  const userInfo =  await User.findByPk(req.session.user_id, 
+    {
+      include: [Post]
+    })
   const parsedInfo = userInfo.get({plain: true})
+  console.log(parsedInfo)
   res.render("dashboard", {
-    username: parsedInfo.username
+    logged_in: req.session.logged_in,
+    username: parsedInfo.username,
+    posts: parsedInfo.posts
   })
 })
 
 // sign up routes
 router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect('/');
     return;
   }

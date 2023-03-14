@@ -25,6 +25,7 @@ router.get("/", async (req, res) => {
     const postData = await Post.create({
       title: req.body.title,
       contents: req.body.contents,
+      user_id: 1
     });
     res.status(200).json({
       message: `post created: ${postData.title}; ${postData.contents}`,

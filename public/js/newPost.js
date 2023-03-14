@@ -17,7 +17,8 @@ const newPostFormHandler = async (e) => {
         });
 
         if (response.ok) {
-            document.location.replace("/dashboard");
+            // ⏰ should be redirecting to the new created post page
+            document.location.replace(`/dashboard`);
         } else {
             alert(response.statusText);
         }

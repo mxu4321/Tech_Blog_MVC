@@ -3,16 +3,16 @@
 * {
     font-family: 'Tilt Neon', cursive, monospace;
     color: white;
-    text-shadow: 5px 5px 10px rgb(152, 198, 226),
-    -10px 10px 25px rgb(152, 198, 226),
-    -10px -10px 25px rgb(152, 198, 226),
-    10px -10px 25px rgb(152, 198, 226);
 }
 
 /* background */
 body {
     background: url(../images/bg.jpg) no-repeat center center fixed;
     background-size: cover;
+    text-shadow: 5px 5px 10px rgb(152, 198, 226),
+    -10px 10px 25px rgb(152, 198, 226),
+    -10px -10px 25px rgb(152, 198, 226),
+    10px -10px 25px rgb(152, 198, 226);
 }
 
 /* nav bar */
@@ -35,4 +35,9 @@ input {
 .btn:hover {
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* text content */
+.text-content p {
+    text-shadow: none;
 }

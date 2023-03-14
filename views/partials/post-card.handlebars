@@ -1,18 +1,19 @@
+
 <div class="post-card card">
 
     <div class="card-header">
         <h4>{{title}}</h4>
     </div>
 
-    <div class="card-body">
-        <p>
+    <div class="text-content card-body">
+        <p class="text-dark-emphasis fs-5">
             {{contents}}
         </p>
 
         <div>
             {{!-- ⏰ if comments exist --}}
             {{#if comments}}
-            {{each comments as |comment|}}
+            {{#each comments as |comment|}}
             {{> comment-card}}
             {{/each}}
             {{/if}}
@@ -20,10 +21,12 @@
 
     </div>
 
-    <div class="card-footer text-muted">
+    <div class="text-content card-footer"> 
+        <p class="text-muted fs-6">
         Posted on
         {{!-- ⏰ insert post date & time --}}
-        {{format_date}}
+        {{format_date createdAt}}
+        </p>
     </div>
 
 </div>
