@@ -25,27 +25,30 @@ router.get("/login", (req, res) => {
 // withAuth will check if the user is logged in before rendering the page
 router.get("/dashboard", withAuth, async (req, res) => {
   console.log(req.session.user_id);
-  const userInfo =  await User.findByPk(req.session.user_id, 
-    {
-      include: [Post]
-    })
-  const parsedInfo = userInfo.get({plain: true})
-  console.log(parsedInfo)
+  const userInfo = await User.findByPk(req.session.user_id, {
+    include: [Post],
+  });
+  const parsedInfo = userInfo.get({ plain: true });
+  console.log(parsedInfo);
   res.render("dashboard", {
     logged_in: req.session.logged_in,
     username: parsedInfo.username,
-    posts: parsedInfo.posts
-  })
-})
-
-// sign up routes
-router.get('/signup', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
-  res.render('signup');
+    posts: parsedInfo.posts,
+  });
 });
 
+// sign up routes
+router.get("/signup", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/");
+    return;
+  }
+  res.render("signup");
+});
+
+// render new post page (after user logged in)
+router.get("/newpost", async (req, res) => {
+  res.render("new-post");
+});
 
 module.exports = router;

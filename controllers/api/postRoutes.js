@@ -2,38 +2,21 @@ const router = require("express").Router();
 const { Post, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// get all posts for homepage display (localhost:3001/api/post)
-router.get("/", async (req, res) => {
-  try {
-    const postData = await Post.findAll({
-      // include: [{ model: Comment }], // --> ❓needed for homepage?
-    });
-    const posts = postData.map((post) => post.get({ plain: true }));
-
-    // ---- ❓render homepage or post page?
-    res.status(200).json(posts);
-    // res.render("homepage", { posts, logged_in: req.session.logged_in });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
+// ⏰TODO: fix this route
 // create a new post (localhost:3001/api/post/create)
-// router.get("/create", withAuth, (req, res) => {
-  router.post("/create", async (req, res) => { // --> 🧪 removed withAuth for testing
+// router.post("/create", async (req, res) => { // --> 🧪 removed withAuth for testing
+router.post("/create", withAuth, async (req, res) => {
   try {
     const postData = await Post.create({
       title: req.body.title,
       contents: req.body.contents,
-      user_id: 1
+      // user_id: 1
+      user_id: req.session.user_id,
     });
     res.status(200).json({
       message: `post created: ${postData.title}; ${postData.contents}`,
+      logged_in: req.session.logged_in,
     });
-
-    // res.render("new-post", 
-    // // { logged_in: req.session.logged_in }
-    // );
   } catch (err) {
     res.status(500).json(err);
   }
@@ -98,6 +81,5 @@ router.get("/user/:id", withAuth, async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // });
-
 
 module.exports = router;
