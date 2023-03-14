@@ -1,8 +1,23 @@
-
 <div class="post-card card">
-    {{!-- ⏰ TODO: display options to edit post --}}
     <div class="card-header">
-        <h4>{{title}}</h4>
+        <div class="row justify-content-between">
+            <div class="col-md-4">
+                <h4>{{title}}</h4>
+            </div>
+
+            <div class="col-md-4">
+                {{!-- ⏰ TODO: show edit & delete button if logged in --}}
+                {{!-- ❌if not working --}}
+                {{#if logged_in}}
+                <button type="button" class="btn btn-primary" id="edit-post-btn">
+                    Edit
+                </button>
+                <button type="button" class="btn btn-primary" id="delete-post-btn">
+                    Delete
+                </button>
+                {{/if}}
+            </div>
+        </div>
     </div>
 
     <div class="text-content card-body">
@@ -21,11 +36,10 @@
 
     </div>
 
-    <div class="text-content card-footer"> 
+    <div class="text-content card-footer">
         <p class="text-muted fs-6">
-        Posted on
-        {{!-- ⏰ insert post date & time --}}
-        {{format_date createdAt}}
+            Posted on
+            {{format_date createdAt}}
         </p>
     </div>
 
