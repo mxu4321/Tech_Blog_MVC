@@ -1,43 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap");
+
+:root {
+  --text-shadow: 5px 5px 10px rgb(152, 198, 226),
+    -10px 10px 25px rgb(152, 198, 226), -10px -10px 25px rgb(152, 198, 226),
+    10px -10px 25px rgb(152, 198, 226);
+}
 
 * {
-    font-family: 'Tilt Neon', cursive, monospace;
-    color: white;
+  font-family: "Tilt Neon", cursive, monospace;
+  color: white;
 }
 
 /* background */
 body {
-    background: url(../images/bg.jpg) no-repeat center center fixed;
-    background-size: cover;
-    text-shadow: 5px 5px 10px rgb(152, 198, 226),
-    -10px 10px 25px rgb(152, 198, 226),
-    -10px -10px 25px rgb(152, 198, 226),
-    10px -10px 25px rgb(152, 198, 226);
+  background: url(../images/bg.jpg) no-repeat center center fixed;
+  background-size: cover;
+  text-shadow: var(--text-shadow);
 }
 
 /* nav bar */
 .nav li a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 .nav li a:hover {
-    color: rgb(143, 187, 232);
-    font-size:20px;
-    font-size-adjust: 20px;
+  color: rgb(143, 187, 232);
+  font-size: 20px;
+  font-size-adjust: 20px;
 }
 
 /* input box */
 input {
-    color: black;
+  color: black;
 }
 
-/* buttons effect */
+/* buttons & effect */
 .btn:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+ul li #logout {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-shadow: var(--text-shadow);
 }
 
 /* text content */
 .text-content p {
-    text-shadow: none;
+  text-shadow: none;
 }

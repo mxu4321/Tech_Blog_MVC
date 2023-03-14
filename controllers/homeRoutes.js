@@ -18,11 +18,11 @@ router.get("/", async (req, res) => {
   }
 });
 
-// withAuth will check if the user is logged in before rendering the page
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
+// withAuth will check if the user is logged in before rendering the page
 router.get("/dashboard", withAuth, async (req, res) => {
   console.log(req.session.user_id);
   const userInfo =  await User.findByPk(req.session.user_id, 
