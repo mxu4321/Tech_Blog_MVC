@@ -9,8 +9,16 @@ router.get("/", async (req, res) => {
       include: [{ model: User }],
     });
     const posts = postData.map((post) => post.get({ plain: true }));
+
+    // const commentData = await Comment.findAll({
+    //   where: {post_id: req.params.id },
+    //   include: [{ model: User }],
+    // })
+    // const comments = commentData.map((post) => post.get({ plain: true }));
+
     res.render("homepage", {
       posts,
+      // comments,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -50,5 +58,39 @@ router.get("/signup", (req, res) => {
 router.get("/newpost", async (req, res) => {
   res.render("new-post");
 });
+
+// render a single post & displaying all related comments
+router.get("/post/:id", async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        User,
+        {
+          model: Comment,
+          include: [User],
+        },
+      ],
+    });
+    if (postData) {
+      const post = postData.get({ plain: true });
+      res.render('single-post', { post });
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+// ----- display comments under a single post
+//     const commentData = await Comment.findAll({
+//       // where: { post_id: req.params.id },
+//       // include: [{ model: User }],
+//     });
+//     const comments = commentData.map((post) => post.get({ plain: true }));
+//     res.render("single-post", { posts, comments });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;

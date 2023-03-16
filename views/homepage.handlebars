@@ -8,5 +8,10 @@
     {{#each posts as |post|}}
     {{> post-card}}  
     {{/each}}
+    {{!-- switch to the single-post page --}}
+    <a href="/post/{{id}}">{{title}}</a>
 </div>
 
+{{#if logged_in}}
+<p>Hello</p>
+{{/if}}

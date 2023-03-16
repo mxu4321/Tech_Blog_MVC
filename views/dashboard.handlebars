@@ -6,14 +6,28 @@
     {{/each}}
 </div>
 
-<div>
-    <a href="/newpost">
-    <button type="button" class="btn btn-primary">
-        Create a New Post
-    </button>
-    </a>
+<div class="row">
+    <div class="col">
+        <a href="/newpost">
+            <button type="button" class="btn btn-primary">
+                Create a New Post
+            </button>
+        </a>
+    </div>
+
+    <div class="col">
+        {{!-- {{#if logged_in}} --}}
+        <button type="button" class="btn btn-primary" id="edit-post-btn">
+            Edit My Post
+        </button>
+        <button type="button" class="btn btn-primary" id="delete-post-btn">
+            Delete My Post
+        </button>
+        {{!-- {{/if}} --}}
+    </div>
 </div>
 
-{{!-- <script>
 
-</script> --}}
+{{!-- ⏰TODO: add functions for edit & delete post --}}
+{{!--
+<script></script> --}}

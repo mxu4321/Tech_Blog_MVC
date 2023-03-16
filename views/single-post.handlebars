@@ -1,0 +1,66 @@
+{{!-- WHEN I click on an existing blog post (from dashboard or homepage)
+THEN I am presented with the post title, contents,
+post creator’s username, and date created for that post
+and have the option to leave a comment --}}
+
+{{!-- display a specific post with comment
+edit button, delete button & leave a comment button
+--}}
+<h3>Single Post Page</h2>
+
+    {{!-- display post & comment partial ❌: not associated with single post id --}}
+    {{!-- <div>
+        <div>
+            {{#each posts as |post|}}
+            {{> post-card post}}
+            {{/each}}
+        </div>
+        <div>
+            {{#if comments}}
+            {{#each comments as |comment|}}
+            {{> comment-card comment}}
+            {{/each}}
+            {{/if}}
+        </div>
+    </div> --}}
+
+    {{!-- buttons for editing or delete posts --}}
+    {{!-- <div>
+        <button type="button" class="btn btn-primary" id="edit-post-btn">
+            Edit My Post
+        </button>
+        <button type="button" class="btn btn-primary" id="delete-post-btn">
+            Delete My Post
+        </button>
+        <button type="button" class="btn btn-primary" id="add-comment-btn">
+            Add a Comment
+        </button>
+    </div> --}}
+
+    <div>
+        <h2> {{Post.title}} </h2>
+        <div> {{Post.contents}} </div>
+        <div>posted by {{User.username}}</div>
+        <div>Last Updated on {{format_date createdAt}} </div>
+
+        {{!-- ❓ post model doesn't have "comments" --}}
+        {{#if Post.comments}}
+        {{!-- {{#if comments}} --}}
+        <p> Comments </p>
+
+        {{#each Post.comments}}
+        {{!-- {{#each comments}} --}}
+        <div> {{comment_text}} </div>
+        <div>on {{format_date createdAt}}</div>
+        {{/each}}
+        {{/if}}
+
+        <form id="new-comment-form" class="card">
+           <input type="hidden" name="post-id" value="{{post.id}}" />
+            <label  for="comment-text">Comment</label>
+            <input id="new-comment-text" name="comment-text" placeholder="Enter Text Here">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="/js/newComment.js"></script>
