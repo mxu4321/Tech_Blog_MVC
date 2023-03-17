@@ -3,13 +3,13 @@ const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // create a new comment by post id (localhost:3000/api/comment/create/post/:id)
-router.post("/create/post/:id", withAuth, async (req, res) => {
+router.post("/create", withAuth, async (req, res) => {
   try {
     const commentData = await Comment.create({
       comment_text: req.body.comment_text,
       //---------- ⏰ TODO: change back to ⤵️ after testing ----------
       user_id: req.session.user_id,
-      post_id: req.params.id,
+      post_id: req.body.post_id,
 
       // 🧪for insomnia testing⤵️
       // user_id: req.body.user_id,

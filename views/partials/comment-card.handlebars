@@ -1,6 +1,5 @@
 <div class="comment-card list-group">
-    {{!-- ⏰ 以下div原本是 a href="#" --}}
-    <div href="#" class="list-group-item list-group-item-action">
+    <div class="list-group-item list-group-item-action">
         <div class="d-flex w-200 justify-content-between">
             <h5 class="mb-1 text-info-emphasis">
                 {{comment_text}}
@@ -12,7 +11,7 @@
         </div>
         <p class="mb-1 text-info-emphasis">
             by
-            {{User.username}}
+            {{user.username}}
         </p>
     </div>
 </div>
