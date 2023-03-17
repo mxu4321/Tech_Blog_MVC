@@ -52,3 +52,11 @@ ul li #logout {
 .text-content p {
   text-shadow: none;
 }
+
+.post-card, .comment-card, .card {
+  text-shadow: none;
+}
+
+/* .card label {
+  color: black;
+} */

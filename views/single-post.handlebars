@@ -44,22 +44,24 @@ edit button, delete button & leave a comment button
         <div>Last Updated on {{format_date createdAt}} </div>
 
         {{!-- ❓ post model doesn't have "comments" --}}
-        {{#if Post.comments}}
+        {{!-- {{#if Post.comments}} --}}
         {{!-- {{#if comments}} --}}
         <p> Comments </p>
 
-        {{#each Post.comments}}
-        {{!-- {{#each comments}} --}}
+        {{!-- {{#each Post.comments}} --}}
+        {{#each comments}}
         <div> {{comment_text}} </div>
         <div>on {{format_date createdAt}}</div>
         {{/each}}
-        {{/if}}
+        {{!-- {{/if}} --}}
 
         <form id="new-comment-form" class="card">
-           <input type="hidden" name="post-id" value="{{post.id}}" />
-            <label  for="comment-text">Comment</label>
-            <input id="new-comment-text" name="comment-text" placeholder="Enter Text Here">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="hidden" name="post-id" value="{{post.id}}" />
+            <label for="comment-text" class=" text-info-emphasis">Enter Comment Below</label>
+            {{!-- <input id="new-comment-text" name="comment-text" placeholder="Enter Text Here"> --}}
+            <textarea id="new-comment-text" class="form-control" aria-label="With textarea"
+                name="comment-text"></textarea>
+            <button type="submit" class="btn btn-primary">Add a New Comment</button>
         </form>
     </div>
 

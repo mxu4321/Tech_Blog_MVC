@@ -19,7 +19,9 @@ const newCommentFormHandler = async (e) => {
     });
 
     if (response.ok) {
-      document.location.replace("/dashboard");
+      // --- after submitting a comment, redirect to the single post page
+      document.location.replace(`api/comment/post/${post_id}`);
+      // use api route will not work⤴️
     } else {
       alert(response.statusText);
     }

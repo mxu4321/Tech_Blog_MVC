@@ -10,15 +10,23 @@ router.get("/", async (req, res) => {
     });
     const posts = postData.map((post) => post.get({ plain: true }));
 
+    // -----⏰ Try to display comments under posts on homepage ---- not necessary
     // const commentData = await Comment.findAll({
     //   where: {post_id: req.params.id },
     //   include: [{ model: User }],
     // })
     // const comments = commentData.map((post) => post.get({ plain: true }));
 
+// -----⏰ Try to display username under posts on homepage
+    // const userInfo = await User.findByPk(req.session.user_id, {
+    //   include: [Post],
+    // });
+    // const parsedInfo = userInfo.get({ plain: true });
+
     res.render("homepage", {
       posts,
       // comments,
+      // username: parsedInfo.username,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -32,12 +40,12 @@ router.get("/login", (req, res) => {
 
 // withAuth will check if the user is logged in before rendering the page
 router.get("/dashboard", withAuth, async (req, res) => {
-  console.log(req.session.user_id);
+  // console.log(req.session.user_id);
   const userInfo = await User.findByPk(req.session.user_id, {
     include: [Post],
   });
   const parsedInfo = userInfo.get({ plain: true });
-  console.log(parsedInfo);
+  // console.log(parsedInfo);
   res.render("dashboard", {
     logged_in: req.session.logged_in,
     username: parsedInfo.username,
@@ -73,7 +81,7 @@ router.get("/post/:id", async (req, res) => {
     });
     if (postData) {
       const post = postData.get({ plain: true });
-      res.render('single-post', { post });
+      res.render("single-post", { post });
     } else {
       res.status(404).end();
     }

@@ -1,17 +1,22 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
+const withAuth = require("../../utils/auth");
 
-// create a new comment (localhost:3000/api/comment/create)
-router.post("/create", async (req, res) => {
+// create a new comment by post id (localhost:3000/api/comment/create/post/:id)
+router.post("/create/post/:id", withAuth, async (req, res) => {
   try {
     const commentData = await Comment.create({
       comment_text: req.body.comment_text,
-      // user_id: req.session.user_id,
-      // post_id: req.body.post_id,
+      //---------- ⏰ TODO: change back to ⤵️ after testing ----------
+      user_id: req.session.user_id,
+      post_id: req.params.id,
+
+      // 🧪for insomnia testing⤵️
+      // user_id: req.body.user_id,
     });
-    // ---> ⏰ change to render the create a comment page
     res.status(200).json({
-      message: `comment created: ${commentData.comment_text}`,
+      message: `comment created: '${commentData.comment_text}'`,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -28,7 +33,8 @@ router.get("/post/:id", async (req, res) => {
       include: [{ model: User }],
     });
     const comments = commentData.map((comment) => comment.get({ plain: true }));
-    res.render("single-post", { comments, logged_in: req.session.logged_in });
+    // res.status(200).json(comments);
+     res.render("single-post", { comments, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
