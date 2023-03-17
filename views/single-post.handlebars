@@ -3,9 +3,7 @@ THEN I am presented with the post title, contents,
 post creator’s username, and date created for that post
 and have the option to leave a comment --}}
 
-{{!-- display a specific post with comment
-edit button, delete button & leave a comment button
---}}
+
 {{!-- <h3>Single Post Page</h2> --}}
 
     <div>
@@ -13,7 +11,9 @@ edit button, delete button & leave a comment button
             <h4 class="card-header"> {{post.title}} </h4>
             <div class="card-title"> <p class="text-dark-emphasis pt-3 fs-3">{{post.contents}}</p></div>
             <div class="card-footer text-muted"> Posted by {{user.username}} 
+                {{!--  {{!-- not showing⤴️ --}} --}}
                 <small class="text-muted">Last Updated on {{format_date createdAt}}</small>
+                 {{!-- showing NaN/NaN/NaN ⤴️ --}}
             </div>
         </div>
 
