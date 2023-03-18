@@ -1,14 +1,14 @@
 {{!-- ⏰ TODO: styling --}}
 
-<h2>
-    HomePage
-</h2>
+<div>
+    <h2>HomePage</h2>
+    <p>Click a post title to view comments</p>
+    </div>
+
 
 <div>
     {{#each posts as |post|}}
     {{> post-card}}  
     {{/each}}
-    {{!-- switch to the single-post page --}}
-    {{!-- <a href="/post/{{id}}">{{Post.title}}</a> --}}
 </div>
 

@@ -9,7 +9,10 @@ edit button, delete button & leave a comment button
     {{> post-card post}}
         <div class="position-absolute top-0 end-0">
             <a href="/editpost/{{id}}">   
-                <button type="button" class="btn btn-primary" id="edit-post-btn" data-id="{{id}}">
+                <button type="button" class="btn btn-primary" id="edit-post-btn" 
+                {{!-- ⏰TODO: check if needed⤵️ --}}
+                {{!-- data-id="{{id}}" --}}
+                >
                 Edit
             </button>
             </a>
@@ -32,4 +35,5 @@ edit button, delete button & leave a comment button
     </div>
 </div>
 
+{{!-- <script src="/js/editPost.js"></script> --}}
 <script src="/js/deleteButton.js"></script>

@@ -22,7 +22,7 @@ router.post("/create", withAuth, async (req, res) => {
 });
 
 // update a post (localhost:3001/api/post/update/:id)
-router.post("/update/:id", withAuth, async (req, res) => {
+router.post("/update/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [{ model: Comment }],
