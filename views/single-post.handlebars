@@ -1,49 +1,54 @@
-{{!-- WHEN I click on an existing blog post (from dashboard or homepage)
-THEN I am presented with the post title, contents,
+{{!-- This page displays following:
+WHEN user click on an existing blog post (from dashboard or homepage)
+THEN user is presented with the post title, contents,
 post creator’s username, and date created for that post
 and have the option to leave a comment --}}
 
-
-{{!-- <h3>Single Post Page</h2> --}}
-
-    <div>
-        <div class="card text-center">
-            <h4 class="card-header"> {{post.title}} </h4>
-            <div class="card-title"> <p class="text-dark-emphasis pt-3 fs-3">{{post.contents}}</p></div>
-            <div class="card-footer text-muted"> Posted by {{user.username}} 
-                {{!--  {{!-- not showing⤴️ --}} --}}
-                <small class="text-muted">Last Updated on {{format_date createdAt}}</small>
-                 {{!-- showing NaN/NaN/NaN ⤴️ --}}
-            </div>
+<div class="single-post-page">
+    <div class="card text-center">
+        <h4 class="card-header"> {{post.title}} </h4>
+        <div class="card-title">
+            <p class="text-dark-emphasis pt-3 fs-3">{{post.contents}}</p>
         </div>
-
-        {{#if post.comments}}
-
-        <h5 class="mb-1 text-warning"> Comments </h5>
-
-        {{#each post.comments}}
-        <div class="row g-0">
-            <div class="col-sm-6 col-md-8">
-                {{comment_text}}
-            </div>
-
-            <div class="col-6 col-md-4">
-                <small>
-                    added by {{user.username}}
-                    on {{format_date createdAt}}
-                </small>
-            </div>
+        <div class="card-footer text-muted"> Posted by {{post.user.username}}
+            <small class="text-muted">Last Updated on {{format_date post.createdAt}}</small>
         </div>
-        {{/each}}
-        {{/if}}
-
-        <form id="new-comment-form" class="card">
-            <input type="hidden" name="post-id" value="{{post.id}}" />
-            <label for="comment-text" class=" text-info-emphasis">Enter Comment Below</label>
-            <textarea id="new-comment-text" class="form-control" aria-label="With textarea"
-                name="comment-text"></textarea>
-            <button type="submit" class="btn btn-primary">Add a New Comment</button>
-        </form>
     </div>
 
-    <script src="/js/newComment.js"></script>
+    {{#if post.comments}}
+
+    <h5 class="mb-1 text-warning"> Comments </h5>
+
+    {{#each post.comments}}
+
+    <div class="position-relative">
+        <div class="col-sm-6 col-md-8">
+            {{comment_text}}
+        </div>
+
+
+        <div class="position-absolute end-0">
+            <small>
+                added by {{user.username}}
+                on {{format_date createdAt}}
+            </small>
+        </div>
+    </div>
+    {{/each}}
+    {{/if}}
+
+    <form id="new-comment-form" class="card">
+        <input type="hidden" name="post-id" value="{{post.id}}" />
+        <label for="comment-text" class=" text-info-emphasis">Enter Comment Below</label>
+        <textarea id="new-comment-text" class="form-control" aria-label="With textarea" name="comment-text"></textarea>
+        {{#if logged_in}}
+        <button type="submit" class="btn btn-primary">Add a New Comment</button>
+        {{/if}}
+        {{#unless logged_in}}
+        <button type="submit" class="btn btn-primary" disabled="true">Must Log In to Comment</button>
+        {{/unless}}
+    </form>
+
+</div>
+
+<script src="/js/newComment.js"></script>

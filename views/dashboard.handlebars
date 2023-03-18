@@ -1,11 +1,24 @@
 {{!-- display a specific post with comment
 edit button, delete button & leave a comment button
 --}}
-<h3>PROFILE PAGE {{username}}</h3>
+<h3>{{username}}'s Dashboard</h3>
 
 <div>
     {{#each posts as |post|}}
+    <div class="position-relative">
     {{> post-card post}}
+        <div class="position-absolute top-0 end-0">
+            <a href="/editpost/{{id}}">   
+                <button type="button" class="btn btn-primary" id="edit-post-btn" data-id="{{id}}">
+                Edit
+            </button>
+            </a>
+         
+            <button type="button" class="btn btn-primary" id="delete-post-btn" data-id="{{id}}">
+                Delete
+            </button>
+        </div>
+    </div>
     {{/each}}
 </div>
 
@@ -17,20 +30,6 @@ edit button, delete button & leave a comment button
             </button>
         </a>
     </div>
-
-    <div class="col">
-        {{!-- {{#if logged_in}} --}}
-        <button type="button" class="btn btn-primary" id="edit-post-btn">
-            Edit My Post
-        </button>
-        <button type="button" class="btn btn-primary" id="delete-post-btn">
-            Delete My Post
-        </button>
-        {{!-- {{/if}} --}}
-    </div>
 </div>
 
-
-{{!-- ⏰TODO: add functions for edit & delete post --}}
-{{!--
-<script></script> --}}
+<script src="/js/deleteButton.js"></script>

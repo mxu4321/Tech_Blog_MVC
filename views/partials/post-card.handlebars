@@ -1,23 +1,14 @@
-<div class="post-card card">
+<div class="post-card card mt-4">
     <div class="card-header">
-       <a href="/post/{{id}}" class="text-white">
-       <h4>{{title}}</h4>
-       </a>
+        <a href="/post/{{id}}" class="text-white">
+            <h4>{{title}}</h4>
+        </a>
     </div>
 
     <div class="text-content card-body">
         <p class="text-dark-emphasis fs-5">
             {{contents}}
         </p>
-
-        <div>
-            {{!-- ⏰ if comments exist --}}
-            {{!-- {{#if comments}} --}}
-            {{#each comments as |comment|}}
-            {{> comment-card}}
-            {{/each}}
-            {{!-- {{/if}} --}}
-        </div>
 
     </div>
 
@@ -26,8 +17,7 @@
             Posted on
             {{format_date createdAt}}
             By
-            {{username}}
-            {{!-- not showing⤴️ --}}
+            {{user.username}}
         </p>
     </div>
 

@@ -10,19 +10,6 @@ router.get("/", async (req, res) => {
     });
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // -----⏰ Try to display comments under posts on homepage ---- not necessary
-    // const commentData = await Comment.findAll({
-    //   where: {post_id: req.params.id },
-    //   include: [{ model: User }],
-    // })
-    // const comments = commentData.map((post) => post.get({ plain: true }));
-
-// -----⏰ Try to display username under posts on homepage
-    // const userInfo = await User.findByPk(req.session.user_id, {
-    //   include: [Post],
-    // });
-    // const parsedInfo = userInfo.get({ plain: true });
-
     res.render("homepage", {
       posts,
       // comments,
@@ -64,7 +51,10 @@ router.get("/signup", (req, res) => {
 
 // render new post page (after user logged in)
 router.get("/newpost", async (req, res) => {
-  res.render("new-post");
+  res.render("new-post", {
+    // this will remove the login and change to logout button
+    logged_in: req.session.logged_in,
+  });
 });
 
 // render a single post & displaying all related comments
@@ -81,7 +71,10 @@ router.get("/post/:id", async (req, res) => {
     });
     if (postData) {
       const post = postData.get({ plain: true });
-      res.render("single-post", { post });
+      res.render("single-post", {
+        post,
+        logged_in: req.session.logged_in,
+      });
     } else {
       res.status(404).end();
     }
@@ -89,16 +82,25 @@ router.get("/post/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-// ----- display comments under a single post
-//     const commentData = await Comment.findAll({
-//       // where: { post_id: req.params.id },
-//       // include: [{ model: User }],
-//     });
-//     const comments = commentData.map((post) => post.get({ plain: true }));
-//     res.render("single-post", { posts, comments });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+
+// route for displaying edit post page
+router.get("/editpost/:id", async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [User],
+    });
+    if (postData) {
+      const post = postData.get({ plain: true });
+      res.render("edit-post", {
+        post,
+        logged_in: req.session.logged_in,
+      });
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

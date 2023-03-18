@@ -4,7 +4,7 @@ const newPostFormHandler = async (e) => {
   const title = document.getElementById("new-post-title").value;
   const contents = document.getElementById("new-post-content").value;
 
-  console.log("line 6:", title & contents);
+ //  console.log("line 6:", title & contents);
   if (title && contents) {
     console.log(title & contents);
     const response = await fetch("/api/post/create", {

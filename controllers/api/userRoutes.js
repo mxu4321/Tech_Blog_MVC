@@ -21,11 +21,8 @@ router.post("/login", async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      // res.status(200).json({ // 🧪 insomnia test
-      // message: `${userData.username} is logged in; id: ${userData.id}; email: ${userData.email}`
-      // });
-      res.render("dashboard", {
-        // username: userData.username,
+      res.status(200).json({ 
+      message: `${userData.username} is logged in; id: ${userData.id}; email: ${userData.email}`
       });
     });
   } catch (err) {
