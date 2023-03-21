@@ -88,6 +88,7 @@ npm start
     "path": "^0.12.7",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5"
+    
 ## Deployment
 
 [Click here for the deployed application](https://tech-blog-mvc-module-14.herokuapp.com/)
