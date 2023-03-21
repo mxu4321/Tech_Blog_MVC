@@ -6,20 +6,15 @@ edit button, delete button & leave a comment button
 <div>
     {{#each posts as |post|}}
     <div class="position-relative">
-    {{> post-card post}}
+        {{> post-card post}}
         <div class="position-absolute top-0 end-0">
-            <a href="/editpost/{{id}}">   
-                <button type="button" class="btn btn-primary" id="edit-post-btn" 
-                {{!-- ⏰TODO: check if needed⤵️ --}}
-                {{!-- data-id="{{id}}" --}}
-                >
-                Edit
-            </button>
+            <a href="/editpost/{{id}}">
+                <button type="button" class="btn btn-primary" id="edit-post-btn">
+                    Edit
+                </button>
             </a>
-         
-            <button type="button" class="btn btn-primary" id="delete-post-btn" 
-            data-id="{{id}}"
-            >
+
+            <button type="button" class="btn btn-primary" id="delete-post-btn" data-id="{{id}}">
                 Delete
             </button>
         </div>
@@ -37,6 +32,4 @@ edit button, delete button & leave a comment button
     </div>
 </div>
 
-{{!-- ⏰TODO: check if needed⤵️ --}}
-{{!-- <script src="/js/editPost.js"></script> --}}
 <script src="/js/deleteButton.js"></script>
