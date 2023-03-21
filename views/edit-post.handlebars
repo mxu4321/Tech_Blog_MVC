@@ -3,11 +3,11 @@
     <form class="form" id="edit-post-form" data-id="{{post.id}}">
         <div class="form-group">
             <label for="post-title">Title:</label>
-            <input id="edit-post-title" class="form-input" type="text" placeholder="{{post.title}}"/>
+            <input id="edit-post-title" class="form-input" type="text" value="{{post.title}}"/>
         </div>
         <div class="form-group">
             <label for="post-content">Content:</label>
-            <textarea id="edit-post-content" class="form-control" aria-label="With textarea" placeholder="{{post.contents}}"></textarea>
+            <input id="edit-post-content" class="form-control py-4" aria-label="With textarea" value="{{post.contents}}"></input>
         </div>
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Submit</button>
@@ -17,3 +17,4 @@
 </div>
 
 <script src="/js/editPost.js"></script>
+
