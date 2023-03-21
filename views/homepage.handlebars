@@ -3,12 +3,15 @@
 <div>
     <h2>HomePage</h2>
     <p>Click a post title to view comments</p>
-    </div>
+</div>
 
 
 <div>
+
     {{#each posts as |post|}}
-    {{> post-card}}  
+    {{> post-card}}
+    {{!-- TODO: styling ⤵️ --}}
+    {{!-- By
+    {{post.user.username}} --}}
     {{/each}}
 </div>
-

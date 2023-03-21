@@ -28,12 +28,19 @@ router.get("/login", (req, res) => {
 // withAuth will check if the user is logged in before rendering the page
 router.get("/dashboard", withAuth, async (req, res) => {
   // console.log(req.session.user_id);
+  const postData = await Post.findAll({
+    where: {
+      user_id: req.session.id,
+    }
+  });
   const userInfo = await User.findByPk(req.session.user_id, {
     include: [Post],
   });
   const parsedInfo = userInfo.get({ plain: true });
+  const posts = postData.map((post) => post.get({ plain: true }));
   // console.log(parsedInfo);
   res.render("dashboard", {
+    posts,
     logged_in: req.session.logged_in,
     username: parsedInfo.username,
     posts: parsedInfo.posts,
