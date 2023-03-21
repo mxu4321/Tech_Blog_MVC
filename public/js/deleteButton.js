@@ -1,7 +1,4 @@
-// delete a post when click the delete button
-// const postId = document.getElementById("delete-post-btn").getAttribute("data-id");
-// can only get the 1st post id on a dashboard⤴️
-
+// ❌not deleting the post
 
 const deleteButtonHandler = async (e) => {
    e.preventDefault();
@@ -17,9 +14,6 @@ const deleteButtonHandler = async (e) => {
     alert(response.statusText);
   }
 };
-// document
-//   .getElementById("delete-post-btn")
-//   .addEventListener("click", deleteButtonHandler);
 
 const deleteButtons = document.querySelectorAll(".delete-post-btn");
 deleteButtons.forEach((el) => el.addEventListener("click", deleteButtonHandler));

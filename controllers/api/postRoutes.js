@@ -26,11 +26,13 @@ router.put("/update/:id", async (req, res) => {
     const postData = await Post.update(
       {
         title: req.body.title,
-        contents: req.body.contents,
+        contents: req.body.contents
       },
       {
-        where: req.params.id,
+        where: {
+          id: req.params.id
       }
+    }
     );
     // const post = postData.get({ plain: true });
     res.status(200).json({
@@ -48,9 +50,9 @@ router.delete("/delete/:id", async (req, res) => {
   try {
     const postData = Post.destroy({
       where: {
-        id: req.params.id,
+        id: req.params.id
       },
-    });
+    })
     // const post = postData.get({ plain: true });
     res.status(200).json({
       message: `post deleted: ${postData.title}; ${postData.contents}`,
