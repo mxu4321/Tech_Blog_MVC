@@ -1,12 +1,12 @@
-// ❌not deleting the post
 // delete a post when click the delete button
-const postId = document.getElementById("delete-post-btn").getAttribute("data-id");
-// console.log(postId); 
+// const postId = document.getElementById("delete-post-btn").getAttribute("data-id");
 // can only get the 1st post id on a dashboard⤴️
 
 
 const deleteButtonHandler = async (e) => {
-//   e.preventDefault();
+   e.preventDefault();
+   const postId = e.target.getAttribute("data-id");
+
   const response = await fetch(`/api/post/delete/${postId}`, {
     method: "DELETE",
   });
@@ -17,6 +17,9 @@ const deleteButtonHandler = async (e) => {
     alert(response.statusText);
   }
 };
-document
-  .getElementById("delete-post-btn")
-  .addEventListener("click", deleteButtonHandler);
+// document
+//   .getElementById("delete-post-btn")
+//   .addEventListener("click", deleteButtonHandler);
+
+const deleteButtons = document.querySelectorAll(".delete-post-btn");
+deleteButtons.forEach((el) => el.addEventListener("click", deleteButtonHandler));

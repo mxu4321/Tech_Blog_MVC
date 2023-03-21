@@ -4,7 +4,7 @@
 const postId = document
   .getElementById("edit-post-form")
   .getAttribute("data-id");
-  console.log(postId);
+  // console.log(postId);
 const editPostFormHandler = async (e) => {
   e.preventDefault();
   // get the data-id from edit button
@@ -13,7 +13,7 @@ const editPostFormHandler = async (e) => {
 
   if (updateTitle && updateContent) {
     const response = await fetch(`/api/post/update/${postId}`, {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify({
         title: updateTitle,
         contents: updateContent,
@@ -23,7 +23,7 @@ const editPostFormHandler = async (e) => {
       },
     });
     if (response.ok) {
-    //   window.alert("Post has been updated!"),
+       window.alert("Post has been updated!"),
         document.location.replace("/dashboard");
     } else {
       alert(response.statusText);
@@ -31,6 +31,5 @@ const editPostFormHandler = async (e) => {
   }
 };
 document
-
   .getElementById("edit-post-form")
   .addEventListener("submit", editPostFormHandler);
