@@ -56,6 +56,7 @@ This application is a CMS-style blog site that allows users to publish their blo
 ![dashboard](https://user-images.githubusercontent.com/112605297/226143354-57f5420c-06c9-4a67-bbad-7da6e41f2589.png)
 ![single-post](https://user-images.githubusercontent.com/112605297/226143373-af7846e3-765b-4e2d-8e5c-3e0e7ead13f3.png)
 ![new-post](https://user-images.githubusercontent.com/112605297/226143432-3bc242ce-d8a6-4406-9e46-4ffb80e7e64c.png)
+![edit-post](https://user-images.githubusercontent.com/112605297/226746792-71fb25df-1d00-4fcc-bddd-5b14fcff66d3.png)
 
 
 ## Run Locally
@@ -90,7 +91,7 @@ npm start
 ## Deployment
 
 <!-- TODO: add heroku link -->
-[Click here for the deployed application](#)
+[Click here for the deployed application](https://git.heroku.com/tech-blog-mvc-module-14.git)
 
 
 ![Heroku](https://camo.githubusercontent.com/6979881d5a96b7b18a057083bb8aeb87ba35fc279452e29034c1e1c49ade0636/68747470733a2f2f7777772e6865726f6b7563646e2e636f6d2f6465706c6f792f627574746f6e2e737667)

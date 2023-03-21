@@ -9,9 +9,11 @@
 <div>
 
     {{#each posts as |post|}}
-    {{> post-card}}
-    {{!-- TODO: styling ⤵️ --}}
-    {{!-- By
-    {{post.user.username}} --}}
+    <div class="position-relative">
+        {{> post-card}}
+        <div class="position-absolute bottom-0 start-50">
+            <p style="text-shadow: none;" class="text-muted fs-6">Posted By {{post.user.username}}</p>
+        </div>
+    </div>
     {{/each}}
 </div>

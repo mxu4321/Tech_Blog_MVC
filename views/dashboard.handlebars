@@ -1,7 +1,5 @@
-{{!-- display a specific post with comment
-edit button, delete button & leave a comment button
---}}
-<h3>{{username}}'s Dashboard</h3>
+{{!-- display a specific post with comment edit button, delete button & leave a comment button --}}
+<h3>{{username}}'s Posts</h3>
 
 <div>
     {{#each posts as |post|}}
@@ -14,9 +12,8 @@ edit button, delete button & leave a comment button
                 </button>
             </a>
 
-            <button type="button" class="btn btn-primary delete-post-btn" 
-            {{!-- id="delete-post-btn"  --}}
-            data-id="{{id}}">
+            <button type="button" class="btn btn-primary delete-post-btn" {{!-- id="delete-post-btn" --}}
+                data-id="{{id}}">
                 Delete
             </button>
         </div>
