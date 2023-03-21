@@ -3,11 +3,11 @@
     <form class="form" id="edit-post-form" data-id="{{post.id}}">
         <div class="form-group">
             <label for="post-title">Title:</label>
-            <input id="edit-post-title" class="form-input" type="text" />
+            <input id="edit-post-title" class="form-input" type="text" placeholder="{{post.title}}"/>
         </div>
         <div class="form-group">
             <label for="post-content">Content:</label>
-            <textarea id="edit-post-content" class="form-control" aria-label="With textarea"></textarea>
+            <textarea id="edit-post-content" class="form-control" aria-label="With textarea" placeholder="{{post.contents}}"></textarea>
         </div>
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Submit</button>

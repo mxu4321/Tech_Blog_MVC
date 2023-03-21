@@ -41,9 +41,10 @@ router.post("/update/:id", async (req, res) => {
 // delete a post (localhost:3001/api/post/delete/:id)
 router.delete("/delete/:id", withAuth, async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [{ model: Comment }],
-    });
+    const postData = await Post.destroy({
+      where: req.params.id, 
+      // include: [{ model: User }],
+  });
     const post = postData.get({ plain: true });
     res.status(200).json({
       message: `post deleted: ${post.title}; ${post.contents}`,

@@ -6,6 +6,7 @@ const exphbs = require("express-handlebars");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const helpers = require("./utils/helpers");
+const { strict } = require("assert");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,6 +17,9 @@ const sess = {
   cookie: {
     // milliseconds⤵️10mintues
     maxAge: 600000,
+    httpOnly: true,
+    secure: false,
+    sameSite: "strict",
   },
   resave: false,
   saveUninitialized: true,
